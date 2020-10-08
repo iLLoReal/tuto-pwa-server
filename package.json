@@ -1,23 +1,29 @@
 {
   "name": "backend_server",
   "version": "1.0.0",
-  "description": "tutorial",
+  "description": "tutorial pwa backend",
   "main": "server.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
   "scripts": {
-    "test": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/iLLoReal/tuto-pwa-server.git"
   },
-  "author": "iLLo",
+  "keywords": [
+    "node",
+    "express"
+  ],
+  "author": "iLLoReal",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/iLLoReal/tuto-pwa-server/issues"
   },
-  "homepage": "https://github.com/iLLoReal/tuto-pwa-server#readme",
-  "dependencies": {
-    "cors": "^2.8.5"
-  }
+  "homepage": "https://github.com/iLLoReal/tuto-pwa-server#readme"
 }
