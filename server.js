@@ -1,36 +1,55 @@
 const express = require('express');
 const app = express();
+
 const webpush = require('web-push');
-const vapidKeys = {
-	"publicKey": "BAIidyZj45O6wr5W1O2NR9nir_HXR-yBQsRgnm-Z0Un-Gf0wXvUYZ91mpkgplWKVG-IXRAayT-HrKXvTQyRFj9w",
-	"privateKey": "IPXkGY1K951VYHWaOucfjitopWB1bR7au2SjsDSSNx4"
-};
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
+var cors = require('cors');
+
+app.use(cors({
+    origin: "https://zealous-jones-65d681.netlify.app/"
+}));
+
 webpush.setVapidDetails(
-  'mailto:example@yourdomain.org',
-  vapidKeys.publicKey,
-  vapidKeys.privateKey
-  );
-  var bodyParser = require('body-parser');
-  app.use(bodyParser.json()); // support json encoded bodies
-  app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-  const greet = express.Router();
-  greet.get('/', (req, res) => {
-    console.log(req.baseUrl);
-    res.send('Hello World');
-  })
-  app.use('/greet', greet);
-  app.post('/subscribe', (req, res) => {
+    'mailto:example@yourdomain.org',
+    vapidKeys.publicKey,
+    vapidKeys.privateKey
+    );
+
+
+const subscribe = express.Router();
+subscribe.post('/', (req, res) => {
     const subscription = req.body;
-    const payload = JSON.stringify({ title: 'test' });
-  
+    const payload = JSON.stringify({
+        "notification": {
+        "title": "Angular News",
+        "body": "Newsletter Available!",
+        "icon": "assets/main-page-logo-small-hat.png",
+        "vibrate": [100, 50, 100],
+        "data": {
+        "dateOfArrival": Date.now(),
+        "primaryKey": 1
+        },
+        "actions": [{
+        "action": "explore",
+        "title": "Go to the site"
+        }]
+    }
+});
     console.log(subscription);
-  
-    webpush.sendNotification(subscription, payload).catch(error => {
-      console.error(error.stack);
+    webpush.sendNotification(subscription, payload).then(result => {
+        console.log(result);
+        res.send(result);
+    }).catch(error => {
+      res.send(error.stack);
     });
-  });
-  const port = process.env.PORT || 80;
-  app.listen(port, err => {
-    if(err) throw err;
-    console.log("%c Server running", "color: green");
-  });
+    res.send(payload);
+})
+
+app.use('/subscribe', subscribe);
+
+const port = process.env.PORT || 80;
+
+app.listen(port, () => console.log('server started'));
