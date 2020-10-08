@@ -19,17 +19,17 @@ webpush.setVapidDetails(
     res.send('Hello World');
   })
   app.use('/greet', greet);
-  app.post('/subscribe', (req, res) => {​​​​​
+  app.post('/subscribe', (req, res) => {
     const subscription = req.body;
-    res.status(201).json({​​​​​}​​​​​);
-    const payload = JSON.stringify({​​​​​ title: 'test' }​​​​​);
+    res.status(201).json({});
+    const payload = JSON.stringify({ title: 'test' });
   
     console.log(subscription);
   
-    webpush.sendNotification(subscription, payload).catch(error => {​​​​​
+    webpush.sendNotification(subscription, payload).catch(error => {
       console.error(error.stack);
-    }​​​​​);
-  }​​​​​);
+    });
+  });
   const port = process.env.PORT || 80;
   app.listen(port, err => {
     if(err) throw err;
