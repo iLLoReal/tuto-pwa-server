@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/iLLoReal/tuto-pwa-server/issues"
   },
-  "homepage": "https://github.com/iLLoReal/tuto-pwa-server#readme"
+  "homepage": "https://github.com/iLLoReal/tuto-pwa-server#readme",
+  "dependencies": {
+    "cors": "^2.8.5"
+  }
 }
