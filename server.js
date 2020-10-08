@@ -24,5 +24,9 @@ app.use('/greet', greet);
 app.use('/subscribe', subscribe);
 
 
+const port = process.env.PORT || 80;
 
-app.listen(3000, () => console.log('server started'));
+app.listen(port, err => {
+    if(err) throw err;
+    console.log("%c Server running", "color: green");
+});
