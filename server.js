@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 var cors = require('cors');
 
 app.use(cors({
-    origin: "https://zealous-jones-65d681.netlify.app/"
+    origin: "https://zealous-jones-65d681.netlify.app"
 }));
 
 const vapidKeys = {
