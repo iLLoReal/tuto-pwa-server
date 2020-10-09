@@ -9,11 +9,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 var cors = require('cors');
 
 app.use(cors({
-    origin: "https://zealous-jones-65d681.netlify.app/"
+    origin: "https://zealous-jones-65d681.netlify.app"
 }));
 
 const vapidKeys = {
-	"publicKey": "BAIidyZj45O6wr5W1O2NR9nir_HXR-yBQsRgnm-Z0Un-Gf0wXvUYZ91mpkgplWKVG-IXRAayT-HrKXvTQyRFj9w",
+    "publicKey": "BAIidyZj45O6wr5W1O2NR9nir_HXR-yBQsRgnm-Z0Un-Gf0wXvUYZ91mpkgplWKVG-IXRAayT-HrKXvTQyRFj9w",
 	"privateKey": "IPXkGY1K951VYHWaOucfjitopWB1bR7au2SjsDSSNx4"
 };
 
